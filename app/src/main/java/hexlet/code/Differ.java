@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,7 +10,7 @@ import java.util.TreeMap;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 public class Differ {
-    public static String generate(String filePath1, String filePath2) throws Exception {
+    public static String generate(String filePath1, String filePath2) throws IOException {
         TypeReference<HashMap<String, Object>> type = new TypeReference<>() { };
         Path file1 = Paths.get(filePath1).toAbsolutePath().normalize();
         Path file2 = Paths.get(filePath2).toAbsolutePath().normalize();
@@ -56,8 +57,7 @@ public class Differ {
                             .append(data2.get(key))
                             .append("\n");
                 }
-            }
-            else if (!data2.containsKey(key)) {
+            } else if (!data2.containsKey(key)) {
                 result.append(" - ")
                         .append(key)
                         .append(": ")

@@ -34,4 +34,3 @@ class App implements Callable<Integer> {
         System.exit(exitCode);
     }
 }
-
