@@ -4,25 +4,32 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws IOException {
-        TypeReference<HashMap<String, Object>> type = new TypeReference<>() { };
-        Path file1 = Paths.get(filePath1).toAbsolutePath().normalize();
-        Path file2 = Paths.get(filePath2).toAbsolutePath().normalize();
 
-        String stringsFromFile1 = Files.readString(file1);
-        String stringsFromFile2 = Files.readString(file2);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map1 = objectMapper.readValue(stringsFromFile1, type);
-        Map<String, Object> map2 = objectMapper.readValue(stringsFromFile2, type);
+        Map<String, Object> map1 = getData(filePath1);
+        Map<String, Object> map2 = getData(filePath2);
         return createDiffList(map1, map2);
     }
+    public static String defineFormat(String filePath) {
+        if (filePath.endsWith("json")) {
+            return "json";
+        } else if (filePath.endsWith("yaml")) {
+            return "yaml";
+        } else {
+            throw new RuntimeException("File '" + filePath + "' is in an unknown format");
+        }
+    }
+    public static Map<String, Object> getData(String filePath) throws IOException {
+        Path path = Paths.get(filePath).toAbsolutePath().normalize();
+        String stringsFromFile = Files.readString(path);
+        String fileFormat = defineFormat(filePath);
+        return Parser.toMap(stringsFromFile, fileFormat);
+    }
+
     public static String createDiffList(Map<String, Object> data1,
                                                       Map<String, Object> data2) {
         Map<String, Object> allData = new TreeMap<>();
