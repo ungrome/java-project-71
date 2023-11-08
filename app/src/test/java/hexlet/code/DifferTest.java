@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class DifferTest {
-    private static String expectPlain = "";
     private static String expected = "";
+    private static String expectedStylish = "";
     public static String read(String filepath) throws IOException {
         Path path = Paths.get(filepath).toAbsolutePath().normalize();
         return Files.readString(path);
@@ -20,6 +20,7 @@ public class DifferTest {
     public static void initExpect() throws IOException {
        // expectPlain = read("src/test/resources/plain.txt");
         expected = read("src/test/resources/expectedResult.txt");
+        expectedStylish = read("src/test/resources/stylish.txt");
     }
     @Test
     public void jsonTest() throws IOException {
@@ -35,5 +36,12 @@ public class DifferTest {
         String filepath2 = "src/test/resources/file2.yaml";
         String result = Differ.generate(filepath1, filepath2);
         assertThat(result).isEqualTo(expected);
+    }
+    @Test
+    public void stylishTest() throws IOException {
+        String filepath1 = "src/test/resources/file3.json";
+        String filepath2 = "src/test/resources/file4.json";
+        String result = Differ.generate(filepath1, filepath2);
+        assertThat(result).isEqualTo(expectedStylish);
     }
 }

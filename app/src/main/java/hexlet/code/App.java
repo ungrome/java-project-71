@@ -7,7 +7,9 @@ import java.util.concurrent.Callable;
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
             description = "Compares two configuration files and shows a difference.")
 class App implements Callable<Integer> {
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"},
+            defaultValue = "stylish",
+            description = "output format [default: stylish]")
     private String format;
     @Option(names = {"-h", "--help"}, description = "Show this help message and exit.")
     private String help;
