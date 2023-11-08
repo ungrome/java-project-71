@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2) throws IOException {
+    public static String generate(String filePath1, String filePath2, String format) throws IOException {
         Map<String, Object> map1 = getData(filePath1);
         Map<String, Object> map2 = getData(filePath2);
         List<Map<String, Object>> differenceList = DiffBuilder.createListOfDiff(map1, map2);
-        return Formatter.stylishFormatter(differenceList);
+        return Formatter.formatDiff(differenceList, format);
     }
     public static String defineFormat(String filePath) {
         if (filePath.endsWith("json")) {

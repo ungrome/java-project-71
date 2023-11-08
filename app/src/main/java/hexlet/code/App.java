@@ -10,7 +10,7 @@ class App implements Callable<Integer> {
     @Option(names = {"-f", "--format"},
             defaultValue = "stylish",
             description = "output format [default: stylish]")
-    private String format;
+    private String formatName;
     @Option(names = {"-h", "--help"}, description = "Show this help message and exit.")
     private String help;
     @Option(names = {"-v", "--version"}, description = "Print version information and exit.")
@@ -22,7 +22,7 @@ class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         try {
-            String diff = Differ.generate(filePath1, filePath2);
+            String diff = Differ.generate(filePath1, filePath2, formatName);
             System.out.println(diff);
         } catch (Exception e) {
             e.printStackTrace();

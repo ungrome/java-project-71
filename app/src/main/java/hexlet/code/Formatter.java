@@ -1,46 +1,21 @@
 package hexlet.code;
 
 
+import hexlet.code.Formatters.Plain;
+import hexlet.code.Formatters.Stylish;
+
 import java.util.List;
 import java.util.Map;
 
 public class Formatter {
-    public static String stylishFormatter(List<Map<String, Object>> listOfDiff) {
-        StringBuilder result = new StringBuilder();
-        result.append("{\n");
-        for (Map<String, Object> map: listOfDiff) {
-            if(map.containsValue("notChanged")) {
-                result.append("   ")
-                        .append(map.get("key"))
-                        .append(": ")
-                        .append(map.get("value1"))
-                        .append("\n");
-            } else if(map.containsValue("changed")) {
-                result.append(" - ")
-                        .append(map.get("key"))
-                        .append(": ")
-                        .append(map.get("value1"))
-                        .append("\n");
-                result.append(" + ")
-                        .append(map.get("key"))
-                        .append(": ")
-                        .append(map.get("value2"))
-                        .append("\n");
-            } else if(map.containsValue("added")) {
-                result.append(" + ")
-                        .append(map.get("key"))
-                        .append(": ")
-                        .append(map.get("value2"))
-                        .append("\n");
-            } else if(map.containsValue("deleted")) {
-                result.append(" - ")
-                        .append(map.get("key"))
-                        .append(": ")
-                        .append(map.get("value1"))
-                        .append("\n");
-            }
+    public static String formatDiff(List<Map<String, Object>> listOfDiff, String formatName) {
+        switch (formatName) {
+            case "stylish":
+                return Stylish.stylishDiff(listOfDiff);
+            case "plain":
+                return Plain.plainDiff(listOfDiff);
+            default:
+                throw new RuntimeException("Unknown extension: " + formatName);
         }
-        result.append("}");
-        return result.toString();
     }
 }
