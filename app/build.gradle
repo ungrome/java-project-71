@@ -53,5 +53,4 @@ jacocoTestReport {
 checkstyle {
     toolVersion '10.12.1'
 }
-//sourceCompatibility = JavaVersion.VERSION_14
-//targetCompatibility = JavaVersion.VERSION_14
+
