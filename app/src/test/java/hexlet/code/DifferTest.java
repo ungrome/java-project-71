@@ -30,34 +30,43 @@ public class DifferTest {
         String filepath1 = "src/test/resources/file1.json";
         String filepath2 = "src/test/resources/file2.json";
         String result = Differ.generate(filepath1, filepath2);
-        Assertions.assertEquals(result,expectedResult);
+        Assertions.assertEquals(result, expectedResult);
     }
     @Test
     public void yaml() throws IOException {
         String filepath1 = "src/test/resources/file1.yaml";
         String filepath2 = "src/test/resources/file2.yaml";
         String result = Differ.generate(filepath1, filepath2);
-        Assertions.assertEquals(result,expectedResult);
+        Assertions.assertEquals(result, expectedResult);
     }
     @Test
     public void jsonTest() throws IOException {
         String filepath1 = "src/test/resources/file3.json";
         String filepath2 = "src/test/resources/file4.json";
         String result = Differ.generate(filepath1, filepath2, "json");
-        Assertions.assertEquals(result,expectedJson);
+        Assertions.assertEquals(result, expectedJson);
     }
     @Test
-    public void stylishTest() throws IOException {
+    public void stylishTestJson() throws IOException {
         String filepath1 = "src/test/resources/file3.json";
         String filepath2 = "src/test/resources/file4.json";
         String result = Differ.generate(filepath1, filepath2, "stylish");
-        Assertions.assertEquals(result,expectedStylish);
+        Assertions.assertEquals(result, expectedStylish);
+    }
+    @Test
+    public void stylishTestYaml() throws IOException {
+
+        String formatName = "stylish";
+        String filePath1 = "src/test/resources/file3.yaml";
+        String filePath2 = "src/test/resources/file4.yaml";
+        String actual = Differ.generate(filePath1, filePath2, formatName);
+        Assertions.assertEquals(actual, expectedStylish);
     }
     @Test
     public void plainTest() throws IOException {
         String filepath1 = "src/test/resources/file3.json";
         String filepath2 = "src/test/resources/file4.json";
         String result = Differ.generate(filepath1, filepath2, "plain");
-        Assertions.assertEquals(result,expectedPlain);
+        Assertions.assertEquals(result, expectedPlain);
     }
 }
