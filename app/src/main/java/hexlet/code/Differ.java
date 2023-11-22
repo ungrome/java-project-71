@@ -14,6 +14,9 @@ public class Differ {
         List<Map<String, Object>> differenceList = DiffBuilder.createListOfDiff(map1, map2);
         return Formatter.formatDiff(differenceList, format);
     }
+    public static String generate(String filePath1, String filePath2) throws IOException {
+        return generate(filePath1, filePath2, "stylish");
+    }
     public static String defineFormat(String filePath) {
         if (filePath.endsWith("json")) {
             return "json";
