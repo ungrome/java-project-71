@@ -49,7 +49,7 @@ public class DifferTest {
     @Test
     public void stylishTestJson() throws IOException {
         String filepath1 = "src/test/resources/fixtures/file1.json";
-        String filepath2 = "src/test/resources/ffixtures/ile2.json";
+        String filepath2 = "src/test/resources/fixtures/file2.json";
         String result = Differ.generate(filepath1, filepath2, "stylish");
         Assertions.assertEquals(result, expectedStylish);
     }
