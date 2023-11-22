@@ -29,7 +29,7 @@ public class DifferTest {
     public void jsonTest() throws IOException {
         String filepath1 = "src/test/resources/file3.json";
         String filepath2 = "src/test/resources/file4.json";
-        String result = Differ.generate(filepath1, filepath2,"json");
+        String result = Differ.generate(filepath1, filepath2, "json");
         assertThat(result).isEqualTo(expectedJson);
     }
 //    @Test

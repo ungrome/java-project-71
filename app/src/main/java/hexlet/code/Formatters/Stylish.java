@@ -8,13 +8,13 @@ public class Stylish {
         StringBuilder result = new StringBuilder();
         result.append("{\n");
         for (Map<String, Object> map: listOfDiff) {
-            if(map.containsValue("notChanged")) {
+            if (map.containsValue("notChanged")) {
                 result.append("   ")
                         .append(map.get("key"))
                         .append(": ")
                         .append(map.get("value1"))
                         .append("\n");
-            } else if(map.containsValue("changed")) {
+            } else if (map.containsValue("changed")) {
                 result.append(" - ")
                         .append(map.get("key"))
                         .append(": ")
@@ -25,13 +25,13 @@ public class Stylish {
                         .append(": ")
                         .append(map.get("value2"))
                         .append("\n");
-            } else if(map.containsValue("added")) {
+            } else if (map.containsValue("added")) {
                 result.append(" + ")
                         .append(map.get("key"))
                         .append(": ")
                         .append(map.get("value2"))
                         .append("\n");
-            } else if(map.containsValue("deleted")) {
+            } else if (map.containsValue("deleted")) {
                 result.append(" - ")
                         .append(map.get("key"))
                         .append(": ")

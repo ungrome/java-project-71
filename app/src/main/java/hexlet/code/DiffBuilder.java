@@ -1,10 +1,13 @@
 package hexlet.code;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class DiffBuilder {
-    public static List<Map<String, Object>> createListOfDiff
-            (Map<String, Object> data1, Map<String, Object> data2) {
+    public static List<Map<String, Object>> createListOfDiff(Map<String, Object> data1, Map<String, Object> data2) {
         Map<String, Object> allData = new TreeMap<>();
         allData.putAll(data1);
         allData.putAll(data2);
