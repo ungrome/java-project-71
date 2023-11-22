@@ -8,8 +8,8 @@ import java.util.concurrent.Callable;
             description = "Compares two configuration files and shows a difference.")
 class App implements Callable<Integer> {
     @Option(names = {"-f", "--format"},
-            defaultValue = "stylish",
-            description = "output format [default: stylish]")
+            defaultValue = "${FORMAT:-stylish}",
+            description = "output format [${FORMAT:-stylish}]")
     private String formatName;
     @Option(names = {"-h", "--help"}, description = "Show this help message and exit.")
     private String help;
