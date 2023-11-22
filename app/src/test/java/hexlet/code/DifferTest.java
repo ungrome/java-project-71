@@ -1,7 +1,7 @@
 package hexlet.code;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeAll;
 
 import java.io.IOException;
@@ -30,34 +30,34 @@ public class DifferTest {
         String filepath1 = "src/test/resources/file1.json";
         String filepath2 = "src/test/resources/file2.json";
         String result = Differ.generate(filepath1, filepath2);
-        assertThat(result).isEqualTo(expectedResult);
+        Assertions.assertEquals(result,expectedResult);
     }
     @Test
     public void yaml() throws IOException {
         String filepath1 = "src/test/resources/file1.yaml";
         String filepath2 = "src/test/resources/file2.yaml";
         String result = Differ.generate(filepath1, filepath2);
-        assertThat(result).isEqualTo(expectedResult);
+        Assertions.assertEquals(result,expectedResult);
     }
     @Test
     public void jsonTest() throws IOException {
         String filepath1 = "src/test/resources/file3.json";
         String filepath2 = "src/test/resources/file4.json";
         String result = Differ.generate(filepath1, filepath2, "json");
-        assertThat(result).isEqualTo(expectedJson);
+        Assertions.assertEquals(result,expectedJson);
     }
     @Test
     public void stylishTest() throws IOException {
         String filepath1 = "src/test/resources/file3.json";
         String filepath2 = "src/test/resources/file4.json";
         String result = Differ.generate(filepath1, filepath2, "stylish");
-        assertThat(result).isEqualTo(expectedStylish);
+        Assertions.assertEquals(result,expectedStylish);
     }
     @Test
     public void plainTest() throws IOException {
         String filepath1 = "src/test/resources/file3.json";
         String filepath2 = "src/test/resources/file4.json";
         String result = Differ.generate(filepath1, filepath2, "plain");
-        assertThat(result).isEqualTo(expectedPlain);
+        Assertions.assertEquals(result,expectedPlain);
     }
 }

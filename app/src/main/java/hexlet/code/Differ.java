@@ -22,6 +22,8 @@ public class Differ {
             return "json";
         } else if (filePath.endsWith("yaml")) {
             return "yaml";
+        } else if (filePath.endsWith("yml")) {
+            return "yml";
         } else {
             throw new RuntimeException("File '" + filePath + "' is in an unknown format");
         }
