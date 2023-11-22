@@ -27,7 +27,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: paambaati/codeclimate-action@v5.0.0
         env:
-          CC_TEST_SECRET: ${{secrets.CC_TEST_SECRET}}
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_SECRET}}
           JACOCO_SOURCE_PATH: ${{github.workspace}}/app/src/main/java
         with:
           coverageCommand: make -C app report
