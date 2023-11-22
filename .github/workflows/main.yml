@@ -22,12 +22,12 @@ jobs:
           gradle-version: 8.3
           build-root-directory: app
       - name: Test code coverage
-        uses: paambaati/codeclimate-action@v2.5.0
+        uses: paambaati/codeclimate-action@v2.0.0
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: app/src/main/java
         with:
-          coverageCommand: make report
+          coverageCommand: ./gradlew jacocoTestReport
           debug: true
-          coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+          coverageLocations: app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
       
