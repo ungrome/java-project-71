@@ -18,10 +18,8 @@ run-dist:
 run:
 	./gradlew run
 
-test:
+test-report:
 	./gradlew test
-
-report:
 	./gradlew jacocoTestReport
 
 lint:
