@@ -18,6 +18,9 @@ public class Parser {
             case "yaml":
                 mapper = new YAMLMapper();
                 break;
+            case "yml":
+                mapper = new YAMLMapper();
+                break;
             default:
                 throw new RuntimeException("Unknown extension: " + fileFormat);
         }
