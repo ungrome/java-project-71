@@ -3,9 +3,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
@@ -21,15 +18,16 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: build
-          build-root-directory: app
+            gradle-version: 8.3
+            arguments: build
+            build-root-directory: app
       - name: Publish code coverage
-        if: ${{ github.event_name == 'push' }}
         uses: paambaati/codeclimate-action@v3.0.0
         env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_SECRET}}
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: ${{github.workspace}}/app/src/main/java
         with:
+          workingDirectory: app
           coverageCommand: make -C app report
           debug: true
           coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
