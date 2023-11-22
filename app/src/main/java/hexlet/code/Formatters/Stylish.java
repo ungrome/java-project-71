@@ -9,30 +9,30 @@ public class Stylish {
         result.append("{\n");
         for (Map<String, Object> map: listOfDiff) {
             if (map.containsValue("notChanged")) {
-                result.append("   ")
+                result.append("    ")
                         .append(map.get("key"))
                         .append(": ")
                         .append(map.get("value1"))
                         .append("\n");
             } else if (map.containsValue("changed")) {
-                result.append(" - ")
+                result.append("  - ")
                         .append(map.get("key"))
                         .append(": ")
                         .append(map.get("value1"))
                         .append("\n");
-                result.append(" + ")
+                result.append("  + ")
                         .append(map.get("key"))
                         .append(": ")
                         .append(map.get("value2"))
                         .append("\n");
             } else if (map.containsValue("added")) {
-                result.append(" + ")
+                result.append("  + ")
                         .append(map.get("key"))
                         .append(": ")
                         .append(map.get("value2"))
                         .append("\n");
             } else if (map.containsValue("deleted")) {
-                result.append(" - ")
+                result.append("  - ")
                         .append(map.get("key"))
                         .append(": ")
                         .append(map.get("value1"))
