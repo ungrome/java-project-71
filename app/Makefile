@@ -30,6 +30,8 @@ lint:
 check-deps:
 	./gradlew dependencyUpdates -Drevision=release
 
+update-deps:
+	./gradlew useLatestVersions
 
 build-run: build run
 

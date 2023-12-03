@@ -1,11 +1,7 @@
 name: Java CI
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  - push
+  - pull_request
 
 jobs:
   build:
@@ -24,10 +20,9 @@ jobs:
           arguments: build
           build-root-directory: app
       - name: Publish code coverage
-        if: ${{ github.event_name == 'push' }}
         uses: paambaati/codeclimate-action@v2.2.0
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: ${{github.workspace}}/app/src/main/java
         with:
           coverageCommand: make -C app report
