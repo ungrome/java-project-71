@@ -7,6 +7,10 @@
 ## Описание проекта
 
 Вычислитель отличий – программа, определяющая разницу между двумя структурами данных. 
+Возможности утилиты:
+
+    Поддержка разных входных форматов: yaml и json
+    Генерация отчета в виде plain text, stylish и json
 
 ## Demonstation of program working
 - [printing difference between two Json files](https://asciinema.org/a/j61peSLC6rjUrG7HS5spQmxdt)
