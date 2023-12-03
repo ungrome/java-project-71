@@ -30,8 +30,8 @@ public class Differ {
     }
     public static Map<String, Object> getData(String filePath) throws IOException {
         Path path = Paths.get(filePath).toAbsolutePath().normalize();
-        String stringsFromFile = Files.readString(path);
+        String contentFromFile = Files.readString(path);
         String fileFormat = defineFormat(filePath);
-        return Parser.toMap(stringsFromFile, fileFormat);
+        return Parser.toMap(contentFromFile, fileFormat);
     }
 }

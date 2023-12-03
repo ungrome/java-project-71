@@ -1,4 +1,4 @@
-package hexlet.code.Formatters;
+package hexlet.code.formatters;
 
 import org.apache.commons.lang3.StringUtils;
 
