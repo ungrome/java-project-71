@@ -9,19 +9,26 @@ import java.util.Map;
 
 public class Parser {
     public static Map<String, Object> toMap(String contentFromFile, String fileFormat)
-            throws JsonProcessingException {
-        ObjectMapper mapper;
+            throws JsonProcessingException, RuntimeException {
         switch (fileFormat) {
-            case "json":
-                mapper = new ObjectMapper();
-                break;
             case "yml":
             case "yaml":
-                mapper = new YAMLMapper();
-                break;
+                return parseYaml(contentFromFile);
+            case "json":
+                return parseJson(contentFromFile);
             default:
                 throw new RuntimeException("Unknown extension: " + fileFormat);
         }
-        return mapper.readValue(contentFromFile, new TypeReference<>() { });
+    }
+    public static Map<String, Object> parseYaml(String content)
+            throws JsonProcessingException {
+        ObjectMapper mapper = new YAMLMapper();
+        return mapper.readValue(content, new TypeReference<>() { });
+    }
+
+    public static Map<String, Object> parseJson(String content)
+            throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(content, new TypeReference<>() { });
     }
 }
