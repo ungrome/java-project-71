@@ -14,27 +14,28 @@ public class DiffBuilder {
         List<Map<String, Object>> listOfDiff = new LinkedList<>();
 
         for (String key : allData.keySet()) {
-            Object val1 = (data1.get(key) == null ? "null" : data1.get(key));
-            Object val2 = (data2.get(key) == null ? "null" : data2.get(key));
+
             Map<String, Object> actualNode = new HashMap<>();
             actualNode.put("key", key);
-            boolean isContainsBothKey = (data1.containsKey(key) && data2.containsKey(key));
-            boolean isTheSameValue = val1.equals(val2);
-            if (isContainsBothKey && isTheSameValue) {
-                actualNode.put("property", "notChanged");
-                actualNode.put("value1", val1);
-            } else if (isContainsBothKey) {
-                actualNode.put("property", "changed");
-                actualNode.put("value1", val1);
-                actualNode.put("value2", val2);
+
+            if (data1.containsKey(key) && data2.containsKey(key)) {
+                boolean checkNull = data1.get(key) != null && data2.get(key) != null;
+                if (checkNull && data1.get(key).equals(data2.get(key))) {
+                    actualNode.put("keyStatus", "notChanged");
+                    actualNode.put("value1", data1.get(key));
+                } else {
+                    actualNode.put("value1", data1.getOrDefault(key, null));
+                    actualNode.put("value2", data2.getOrDefault(key, null));
+                    actualNode.put("keyStatus", "changed");
+                }
             } else if (data1.containsKey(key)) {
-                actualNode.put("property", "deleted");
-                actualNode.put("value1", val1);
-            } else if (data2.containsKey(key)) {
-                actualNode.put("property", "added");
-                actualNode.put("value2", val2);
+                actualNode.put("keyStatus", "deleted");
+                actualNode.put("value1", data1.getOrDefault(key, null));
+            } else {
+                actualNode.put("keyStatus", "added");
+                actualNode.put("value2", data2.getOrDefault(key, null));
             }
-            listOfDiff.add(actualNode);
+          listOfDiff.add(actualNode);
         }
         return listOfDiff;
     }
