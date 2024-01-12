@@ -34,9 +34,9 @@ public class DifferTest {
     @Test
     public void defaultFormatTest() throws Exception {
         String resultJson = Differ.generate(jsonFilePath1, jsonFilePath2);
-        Assertions.assertEquals(resultJson, expectedJson);
+        Assertions.assertEquals(resultJson, expectedStylish);
         String resultYaml = Differ.generate(yamlFilePath1, yamlFilePath2);
-        Assertions.assertEquals(resultYaml, expectedJson);
+        Assertions.assertEquals(resultYaml, expectedStylish);
     }
     @Test
     public void jsonTest() throws Exception {
