@@ -35,9 +35,8 @@ public class DiffBuilder {
                 actualNode.put("keyStatus", "added");
                 actualNode.put("value2", data2.getOrDefault(key, null));
             }
-          listOfDiff.add(actualNode);
+            listOfDiff.add(actualNode);
         }
         return listOfDiff;
     }
 }
-
